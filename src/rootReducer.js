@@ -1,4 +1,4 @@
-import { ADD_ITEM, REMOVE_ITEM } from './actionTypes';
+import { ADD_ITEM, REMOVE_ITEM, UPDATE_QTY } from './actionTypes';
 
 const INITIAL_STATE = {
   cart: []
@@ -18,6 +18,17 @@ function rootReducer(state = INITIAL_STATE, action) {
     case REMOVE_ITEM:
       return {
         cart: state.cart.filter(item => item.id !== action.id)
+      };
+
+    //if action is update quantity, update it
+
+    case UPDATE_QTY:
+      let idx = state.cart.findIndex(item => item.id === action.id);
+      let item = { ...state.cart[idx] };
+      item.qty += action.qtyChanged;
+
+      return {
+        cart: [...state.cart.slice(0, idx), item, ...state.cart.slice(idx + 1)]
       };
 
     default:

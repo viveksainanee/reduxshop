@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 import data from '../db.json';
 import { connect } from 'react-redux';
 import { addItem, removeItem } from '../actions';
+import { Link } from 'react-router-dom';
 import Item from '../Components/Item';
 import './ItemList.css';
+import { Button } from 'reactstrap';
 
 class ItemList extends Component {
   constructor(props) {
@@ -37,9 +39,17 @@ class ItemList extends Component {
           />
         ))}
         <div id="ItemList-footer">
-          <p> Items in your cart: {this.props.cart.length}</p>
+          <b>
+            $
+            {this.props.cart.reduce(
+              (acc, item) => acc + item.price * item.qty,
+              0
+            )}{' '}
+          </b>
 
-          <b>${this.props.cart.reduce((acc, item) => acc + item.price, 0)} </b>
+          <Link to="/cart">
+            <Button color="primary"> Go to Cart </Button>{' '}
+          </Link>
         </div>
       </div>
     );
@@ -50,6 +60,7 @@ class ItemList extends Component {
 function mapStateToProps(state) {
   return {
     cart: state.cart
+    // numItems: state.cart.length,
   };
 }
 

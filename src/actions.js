@@ -1,4 +1,4 @@
-import { ADD_ITEM, REMOVE_ITEM } from './actionTypes';
+import { ADD_ITEM, REMOVE_ITEM, UPDATE_QTY } from './actionTypes';
 
 export function addItem(payload) {
   //returns action for add item
@@ -14,5 +14,14 @@ export function removeItem(id) {
   return {
     type: REMOVE_ITEM,
     id
+  };
+}
+
+export function updateQuantity(id, qtyChanged) {
+  //returns action for quantity update
+  return {
+    type: UPDATE_QTY,
+    id,
+    qtyChanged
   };
 }
