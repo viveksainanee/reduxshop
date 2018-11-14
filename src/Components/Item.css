@@ -1,0 +1,19 @@
+#Item {
+  display: inline-flex;
+  flex-direction: column;
+  justify-items: end;
+  align-items: center;
+  width: 300px;
+  height: 400px;
+  background-color: whitesmoke;
+  margin: 20px;
+  padding: 20px;
+}
+
+#Item-image {
+  max-height: 200px;
+  max-width: 150px;
+  width: auto;
+  height: auto;
+  /* margin: auto; */
+}
